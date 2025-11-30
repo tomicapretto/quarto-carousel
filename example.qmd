@@ -1,0 +1,42 @@
+---
+title: "Carousel Filter Demo"
+format: html
+embed-resources: true
+filters:
+  - carousel
+---
+
+# Carousel Examples
+
+This document demonstrates the quarto-carousel extension with different syntax options.
+
+## Example 1: Using Explicit Item Divs
+
+::: {.carousel id="carousel-01" duration=1000}
+
+:::: {.item image="assets/imgs/assymetric_laplace.png" caption="Assymetric Laplace"}
+:::
+
+:::: {.item image="assets/imgs/logit_normal.png" caption="Logit Normal"}
+:::
+
+:::: {.item image="assets/imgs/kumaraswamy.png" caption="Kumaraswamy"}
+:::
+
+:::
+
+
+## Example 2: `autoplay="false"`
+
+::: {.carousel id="carousel-02" autplay="false"}
+
+:::: {.item image="assets/imgs/assymetric_laplace.png" caption="Assymetric Laplace"}
+:::
+
+:::: {.item image="assets/imgs/logit_normal.png" caption="Logit Normal"}
+:::
+
+:::: {.item image="assets/imgs/kumaraswamy.png" caption="Kumaraswamy"}
+:::
+
+:::

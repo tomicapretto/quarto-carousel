@@ -1,0 +1,26 @@
+/* Carousel */
+div.carousel {
+  margin-top: 2rem; 
+}
+
+.carousel.card {
+  padding-top: 2em;
+}
+
+.carousel img {
+  max-width: 75%;
+  margin-bottom: 110px;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  margin-bottom: 110px;
+}
+
+.carousel-caption {
+  padding-top: 1em;
+}
+
+/* Eliminar transiciones */
+.carousel-item {
+  transition: none !important;
+}

@@ -1,0 +1,8 @@
+name: carousel
+title: Bootstrap Carousel
+author: Your Name
+version: 1.0.0
+quarto-required: ">=1.4"
+contributes:
+  filters:
+    - carousel.lua
