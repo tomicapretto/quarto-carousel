@@ -8,18 +8,15 @@ function create_item(extra_class, duration, image, caption, text)
   ]]
 
   -- Template for the text item
-  -- TODO: Check fs-3 class for text and centering classes
+
   -- TODO: Add no-transition class
   -- TODO: Add contained class
+  -- TODO: Add manual height to slides
   local text_item_template = [[
   <div class="carousel-item %s" data-bs-interval="%d">
-    <div class="d-flex align-items-center justify-content-center" style="height: 400px;">
-      <div class="text-center">
-        <p class="fs-3 fw-bold">
-          %s
-        </p>
-        %s
-      </div>
+    <div class="d-flex flex-column align-items-center justify-content-center text-center" style="height: 400px;">
+      <p class="fs-3 fw-bold">%s</p>
+      %s
     </div>
   </div>
   ]]
