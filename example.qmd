@@ -10,9 +10,32 @@ filters:
 
 This document demonstrates the quarto-carousel extension with different syntax options.
 
+
+## Example 0: Simplest carousels
+
+Only images
+
+:::: {.carousel id="asd"}
+
+![The image](assets/imgs/assymetric_laplace.png)
+
+![The same but different](assets/imgs/assymetric_laplace.png)
+
+:::
+
+Only text
+
+:::: {.carousel id="asd2" autoplay="false"}
+
+Like a slide
+
+Of a single line
+
+:::
+
 ## Example 1: Using Explicit Item Divs
 
-::: {.carousel id="carousel-01" duration=1000}
+::: {.carousel id="carousel-01" duration=3000}
 
 :::: {.item image="assets/imgs/assymetric_laplace.png" caption="Assymetric Laplace"}
 :::
@@ -28,12 +51,28 @@ This document demonstrates the quarto-carousel extension with different syntax o
 
 ## Example 2: `autoplay="false"`
 
-::: {.carousel id="carousel-02" autplay="false"}
+::: {.carousel id="carousel-02" autoplay="false"}
 
 :::: {.item image="assets/imgs/assymetric_laplace.png" caption="Assymetric Laplace"}
 :::
 
-:::: {.item image="assets/imgs/logit_normal.png" caption="Logit Normal"}
+:::: {.item image="assets/imgs/logit_normal.png"}
+:::
+
+:::: {.item image="assets/imgs/kumaraswamy.png"}
+:::
+
+:::
+
+
+## Example 3: A mixture of things
+
+:::: {.carousel id="carousel-03" autoplay="false"}
+
+::: {.item text="Welcome to the carousel"}
+:::
+
+::: {.item text="Main text content" caption="Optional caption"}
 :::
 
 :::: {.item image="assets/imgs/kumaraswamy.png" caption="Kumaraswamy"}

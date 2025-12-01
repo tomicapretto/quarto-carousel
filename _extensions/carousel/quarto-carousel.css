@@ -1,5 +1,5 @@
 /* Carousel */
-div.carousel {
+/* div.carousel {
   margin-top: 2rem; 
 }
 
@@ -21,6 +21,6 @@ div.carousel {
 }
 
 /* Eliminar transiciones */
-.carousel-item {
+/*.carousel-item {
   transition: none !important;
-}
+} */
