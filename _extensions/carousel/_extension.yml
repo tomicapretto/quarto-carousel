@@ -1,6 +1,6 @@
 name: carousel
 title: Bootstrap Carousel
-author: Your Name
+author: Tomás Capretto
 version: 1.0.0
 quarto-required: ">=1.4"
 contributes:

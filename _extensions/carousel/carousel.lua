@@ -1,52 +1,76 @@
-function create_item(extra_class, duration, image, caption, text)
-  -- Template for the image
-  local image_item_template = [[
-  <div class="carousel-item %s" data-bs-interval="%d">
-    <img src="%s" class="d-block w-100">
-    %s
-  </div>
-  ]]
+-- TODO: Add no-transition class
+-- TODO: Add contained class
+-- TODO: Add manual height to slides
+-- TODO: Pass classes to item
 
-  -- Template for the text item
-
-  -- TODO: Add no-transition class
-  -- TODO: Add contained class
-  -- TODO: Add manual height to slides
-  local text_item_template = [[
-  <div class="carousel-item %s" data-bs-interval="%d">
-    <div class="d-flex flex-column align-items-center justify-content-center text-center" style="height: 400px;">
-      <p class="fs-3 fw-bold">%s</p>
-      %s
-    </div>
-  </div>
-  ]]
-
-  -- Template for the caption
-  local caption_template = [[
-  <div class="carousel-caption d-none d-md-block">
-    <p>%s</p>
-  </div>
-  ]]
-
-  local caption_el = ""
-  if caption and caption ~= "" then
-    caption_el = string.format(caption_template, caption)
-  end
-
-  -- If image is provided, use image template; otherwise use text template
-  if image then
-    local output = string.format(image_item_template, extra_class, duration, image, caption_el)
-    return output
-  elseif text then
-    local output = string.format(text_item_template, extra_class, duration, text, caption_el)
-    return output
-  else
-    return ""
-  end
+--- Generate unique carousel ID
+local carousel_count = 0
+local function unique_carousel_id()
+  carousel_count = carousel_count + 1
+  return "quarto-carousel-" .. tostring(carousel_count)
 end
 
 
-function create_indicator(id, index, extra_class, aria_current)
+function create_slide(is_active, duration)
+  classes = {"carousel-item"}
+  if is_active then
+    classes = {"carousel-item", "active"}
+  end
+  return pandoc.Div({}, pandoc.Attr("", classes, {["data-bs-interval"] = tostring(duration)}))
+end
+
+
+function create_image( source)
+  return pandoc.Image({}, source, "", pandoc.Attr("", {"d-block", "w-100"}))
+end
+
+
+function create_overlay(content)
+  inner_div = pandoc.Div(content, pandoc.Attr("", {"fs-2", "fw-bold"}))
+  outer_div = pandoc.Div(
+    inner_div,
+    pandoc.Attr(
+      "",
+      {"overlay", "d-flex", "flex-column", "align-items-center", "justify-content-center", "text-center"}
+    )
+  )
+  return outer_div
+end
+
+
+function create_caption(text)
+  -- NOTE: How could we make captions more flexible?
+
+  -- Replace <br> with a newline character (\n)
+  -- If the user writes '\n' it does not work.
+  local clean_string = text:gsub("<br>", "\n")
+  local inlines = {}
+  local first = true
+  for line in clean_string:gmatch("[^\n]+") do
+    if not first then
+      table.insert(inlines, pandoc.RawInline("html", "<br>"))
+    end
+    table.insert(inlines, pandoc.Str(line))
+    first = false
+  end
+
+  return pandoc.Div(
+    { pandoc.Para(inlines) },
+    pandoc.Attr("", {"carousel-caption", "d-none", "d-md-block"})
+  )
+end
+
+
+function create_indicator(id, index, is_active)
+  -- NOTE: It is not possible to create a button using Pandoc API, so we use RawBlocks
+  local extra_class = ""
+  local aria_current = ""
+
+  if is_active then
+    extra_class = " active"
+    aria_current = ' aria-current="true"'
+  end
+
   local template = [[
   <button
     type="button"
@@ -55,170 +79,111 @@ function create_indicator(id, index, extra_class, aria_current)
     class="%s"%s
     aria-label="Slide %d"></button>
   ]]
-  return string.format(template, id, index - 1, extra_class, aria_current, index)
+  local button = string.format(template, id, index - 1, extra_class, aria_current, index)
+  return pandoc.RawBlock("html", button)
 end
 
 
 function create_controls(id)
-  local template = [[
-  <button class="carousel-control-prev" type="button" data-bs-target="#%s" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#%s" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-  ]]
-  return string.format(template, id, id)
+  -- NOTE: It is not possible to create a button using Pandoc API, so we use RawBlocks
+  local prev = string.format([[
+      <button class="carousel-control-prev" type="button"
+      data-bs-target="#%s" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+      </button>
+    ]],
+    id
+  )
+
+  local next = string.format([[
+      <button class="carousel-control-next" type="button"
+      data-bs-target="#%s" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+      </button>
+    ]],
+    id
+  )
+  return {pandoc.RawBlock("html", prev), pandoc.RawBlock("html", next)}
 end
 
-
-function carousel(id, items, duration, autoplay)
-  -- Validate inputs
-  if not items or #items == 0 then
-    return ""
-  end
-
-  local data_bs_ride = autoplay
-  local indicators = {}
-  local slides = {}
-
-  for i, item in ipairs(items) do
-    local active = (i == 1) and "active" or ""
-    local aria_current = (i == 1) and ' aria-current="true"' or ""
-    local caption = item.caption or ""
-
-    -- Indicator button
-    table.insert(indicators, create_indicator(id, i, active, aria_current))
-
-    -- Carousel item - use text or image
-    if item.image then
-      table.insert(slides, create_item(active, duration, item.image, caption, nil))
-    else
-      table.insert(slides, create_item(active, duration, nil, item.caption, item.text))
-    end
-  end
-
-  -- Return empty string if no valid slides
-  if #slides == 0 then
-    return ""
-  end
-
-  local carousel_indicators = string.format(
-    "<div class='carousel-indicators'>%s</div>", table.concat(indicators, "\n")
-  )
-  local carousel_items = string.format(
-    "<div class='carousel-inner'>%s</div>", table.concat(slides, "\n")
-  )
-  local carousel_controls = create_controls(id)
-
-  local carousel_template = [[
-  <div id="%s" class="carousel carousel-dark slide" data-bs-ride="%s">
-    %s
-    %s
-    %s
-  </div>
-  ]]
-
-  -- carousel-dark
-  local output = string.format(
-    carousel_template,
-    id, data_bs_ride, carousel_indicators, carousel_items, carousel_controls
-  )
-  return output
-end
 
 function Div(el)
   -- Only work with HTML output formats
-  if not quarto.doc.is_format("html") or not quarto.doc.has_bootstrap() then
+  if not quarto.doc.is_format("html")
+    or not quarto.doc.has_bootstrap()
+    or not el.classes:includes("carousel") then
     return nil
   end
 
-  if el.classes:includes("carousel") then
-    quarto.doc.add_html_dependency({
-      name = "carousel",
-      version = "0.0.1",
-      stylesheets = {"quarto-carousel.css"},
-    })
+  quarto.doc.add_html_dependency({
+    name = "carousel",
+    version = "0.1.0",
+    stylesheets = {"quarto-carousel.css"},
+  })
 
-    local id = el.identifier or ("carousel-" .. pandoc.utils.sha1(pandoc.utils.stringify(items)))
-    local duration = tonumber(el.attributes["duration"]) or 3000
-    local autoplay = el.attributes["autoplay"] or "carousel"
+  local id = (el.identifier ~= nil and el.identifier ~= "") and el.identifier or unique_carousel_id()
+  local show_indicators = (el.attributes["indicators"]) or "true"
+  local show_controls = (el.attributes["controls"]) or "true"
+  local duration = tonumber(el.attributes["duration"]) or 3000
+  local autoplay = el.attributes["autoplay"] or "carousel"
 
-    local items = {}
-    for _, blk in ipairs(el.content or {}) do
-      if blk.t == "Div" and blk.classes:includes("item") then
-        -- Explicit .item div
-        if blk.attributes.image and blk.attributes.image ~= "" then
-          table.insert(items, {
-            caption = pandoc.utils.stringify(blk.attributes.caption or ""),
-            image   = blk.attributes.image,
-          })
-        elseif blk.attributes.text and blk.attributes.text ~= "" then
-          -- Text-only item
-          table.insert(items, {
-            caption = pandoc.utils.stringify(blk.attributes.caption or ""),
-            text    = pandoc.utils.stringify(blk.attributes.text),
-          })
-        end
-      elseif blk.t == "Figure" and blk.content then
-        -- ![caption](path) - Figures
-        local img = nil
-        for _, content in ipairs(blk.content) do
-          -- Image can be inside a Plain or Para block
-          if content.t == "Plain" or content.t == "Para" then
-            for _, inner_content in ipairs(content.content) do
-              if inner_content.t == "Image" then
-                img = inner_content
-                break
-              end
-            end
-          -- Image is directly an Image
-          elseif content.t == "Image" then
-            img = content
-            break
-          end
-          -- If an image is found, stop iterating
-          if img then break end
-        end
+  -- Initialize empty tables for slides and indicators. There's one indicator per slide.
+  local slides = {}
+  local indicators = {}
+  for i, block in ipairs(el.content or {}) do
+    if block.classes:includes("carousel-item") then
+      local image_source = block.attributes["image"] or ""
+      local caption = block.attributes["caption"] or ""
+      local slide_duration = block.attributes["duration"] or duration
 
-        -- If found an image, add it
-        if img and img.src and img.src ~= "" then
-          table.insert(items, {
-            caption = pandoc.utils.stringify(blk.caption or ""),
-            image = img.src
-          })
-        end
+      local slide = create_slide(i == 1, slide_duration)
+      local indicator = create_indicator(id, i, i == 1)
 
-      elseif blk.t == "Para" and blk.content and #blk.content >= 1 then
-        -- Check for image first: ![](path) or ![](path){caption="..."}
-        local found_image = false
-        for _, content in ipairs(blk.content) do
-          if content.t == "Image" then
-            local src = content.src or ""
-            if src ~= "" then
-              table.insert(items, {
-                caption = pandoc.utils.stringify(content.caption or "") or content.attributes.caption or "",
-                image = src
-              })
-            end
-            found_image = true
-            break
-          end
-        end
-
-        -- If no image found, treat as text content
-        if not found_image then
-          local text = pandoc.utils.stringify(blk)
-          if text and text ~= "" then
-            table.insert(items, { text = text })
-          end
-        end
+      -- Add image, if available
+      if image_source and image_source ~= "" then
+        slide.content:insert(create_image(image_source))
       end
-    end
 
-    local html = carousel(id, items, duration, autoplay)
-    return pandoc.RawBlock("html", html)
+      -- Add caption, if available
+      if caption and caption ~= "" then
+        slide.content:insert(create_caption(caption))
+      end
+
+      -- Add additional content, if it exists (there's no intervention here)
+      if #block.content > 0 then
+        slide.content:insert(create_overlay(block.content))
+      end
+
+      -- Add the created elements (slide and indicator) to their respective tables
+      table.insert(slides, slide)
+      table.insert(indicators, indicator)
+    end
   end
+
+  -- Create empty div for the carousel, classes and attributes set.
+  local div_carousel_attr = pandoc.Attr(
+    id, {"carousel", "carousel-dark", "slide"}, {["data-bs-ride"] = autoplay}
+  )
+  local div_carousel = pandoc.Div({}, div_carousel_attr)
+
+  -- Add slide indicators to carousel, if required
+  if show_indicators and show_indicators ~= "false" then
+    div_carousel.content:insert(
+      pandoc.Div(indicators, pandoc.Attr("", {"carousel-indicators"}))
+    )
+  end
+
+  -- Add slides to carousel, always
+  div_carousel.content:insert(pandoc.Div(slides, pandoc.Attr("", {"carousel-inner"})))
+
+  -- Add controls to carousel, if required
+  if show_controls and show_controls ~= "false" then
+    local controls_elements = create_controls(id)
+    div_carousel.content:insert(controls_elements[1])
+    div_carousel.content:insert(controls_elements[2])
+  end
+
+  return pandoc.RawBlock("html", pandoc.write(pandoc.Pandoc(div_carousel), "html"))
 end
