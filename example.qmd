@@ -10,82 +10,99 @@ filters:
 
 This document demonstrates the quarto-carousel extension with different syntax options.
 
+## Example 0: Simplest carousels
 
-## Example 1: Using Explicit Item Divs
+### Text only
+
+:::: {.carousel}
+
+:::: {.carousel-item}
+Slide 1
+:::
+
+:::: {.carousel-item}
+Slide 2
+
+Multiple lines, too.
+:::
+
+:::
+
+### Images only
+
+:::: {.carousel}
+
+:::: {.carousel-item image="assets/imgs/assymetric_laplace.png" caption="Assymetric Laplace"}
+:::
+
+:::: {.carousel-item image="assets/imgs/logit_normal.png" caption="Logit Normal"}
+:::
+
+:::: {.carousel-item image="assets/imgs/kumaraswamy.png" caption="Kumaraswamy"}
+:::
+
+:::
+
+## Example 1: Images and text without autoplay
 
 :::: {.carousel autoplay="false"}
 
-:::: {.carousel-item image="assets/imgs/assymetric_laplace.png" caption="hola<br>amigo<br>todo bien"}
+:::: {.carousel-item image="assets/imgs/assymetric_laplace.png" caption="The caption"}
 
-Hola
-
-Como estas, capo?
+Overlay text
 
 :::
 
 :::: {.carousel-item image="assets/imgs/logit_normal.png" caption="the caption 2"}
+
+Another overlay text
+
+Which is a bit longer
+
+:::
+
+:::
+
+
+## Exaple 2: No transition
+
+:::: {.carousel autoplay="false" transition="none"}
+
+:::: {.carousel-item}
+this moves
 :::
 
 :::: {.carousel-item}
-
-Solo texto
-
-broder
-
-:::
-
-:::
-
-<!-- ## Example 0: Simplest carousels
-
-Only images
-
-:::: {.carousel id="asd"}
-
-![The image](assets/imgs/assymetric_laplace.png)
-
-![The same but different](assets/imgs/assymetric_laplace.png)
-
-::: -->
-
-<!-- Only text
-
-:::: {.carousel id="asd2" autoplay="false"}
-
-Like a slide
-
-Of a single line
-
-::: -->
-
-
-<!-- ## Example 2: `autoplay="false"`
-
-::: {.carousel id="carousel-02" autoplay="false"}
-
-:::: {.item image="assets/imgs/assymetric_laplace.png" caption="Assymetric Laplace"}
-:::
-
-:::: {.item image="assets/imgs/logit_normal.png"}
-:::
-
-:::: {.item image="assets/imgs/kumaraswamy.png"}
+without transition
 :::
 
 :::
 
 
-## Example 3: A mixture of things
+## Example 3: Framed
 
-:::: {.carousel id="carousel-03" autoplay="false"}
+:::: {.carousel autoplay="false" framed="true"}
 
-::: {.item text="Welcome to the carousel"}
+:::: {.carousel-item image="assets/imgs/assymetric_laplace.png" caption="Assymetric Laplace"}
 :::
 
-::: {.item text="Main text content" caption="Optional caption"}
+:::: {.carousel-item image="assets/imgs/logit_normal.png" caption="Logit Normal"}
 :::
 
-:::: {.item image="assets/imgs/kumaraswamy.png" caption="Kumaraswamy"}
+:::: {.carousel-item image="assets/imgs/kumaraswamy.png" caption="Kumaraswamy"}
+:::
 :::
 
-::: -->
+## Example 4: Framed, with styles
+
+:::: {.carousel autoplay="false" framed="true" style="border: 2px solid red;"}
+
+:::: {.carousel-item image="assets/imgs/assymetric_laplace.png" caption="Assymetric Laplace"}
+:::
+
+:::: {.carousel-item image="assets/imgs/logit_normal.png" caption="Logit Normal"}
+:::
+
+:::: {.carousel-item image="assets/imgs/kumaraswamy.png" caption="Kumaraswamy"}
+:::
+:::

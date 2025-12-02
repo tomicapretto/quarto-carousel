@@ -1,7 +1,4 @@
--- TODO: Add no-transition class
--- TODO: Add contained class
--- TODO: Add manual height to slides
--- TODO: Pass classes to item
+-- TODO: Pass styles
 
 --- Generate unique carousel ID
 local carousel_count = 0
@@ -21,7 +18,7 @@ end
 
 
 function create_image( source)
-  return pandoc.Image({}, source, "", pandoc.Attr("", {"d-block", "w-100"}))
+  return pandoc.Image({}, source, "", pandoc.Attr("", {"d-block", "mx-auto"}))
 end
 
 
@@ -128,6 +125,9 @@ function Div(el)
   local show_controls = (el.attributes["controls"]) or "true"
   local duration = tonumber(el.attributes["duration"]) or 3000
   local autoplay = el.attributes["autoplay"] or "carousel"
+  local transition = el.attributes["transition"] or "default"
+  local framed = el.attributes["framed"] or "false"
+  local style = el.attributes["style"] or nil
 
   -- Initialize empty tables for slides and indicators. There's one indicator per slide.
   local slides = {}
@@ -156,6 +156,11 @@ function Div(el)
         slide.content:insert(create_overlay(block.content))
       end
 
+      -- Remove transition, if necessary
+      if transition == "none" then
+        slide.classes:insert("no-transition")
+      end
+
       -- Add the created elements (slide and indicator) to their respective tables
       table.insert(slides, slide)
       table.insert(indicators, indicator)
@@ -163,10 +168,25 @@ function Div(el)
   end
 
   -- Create empty div for the carousel, classes and attributes set.
-  local div_carousel_attr = pandoc.Attr(
-    id, {"carousel", "carousel-dark", "slide"}, {["data-bs-ride"] = autoplay}
-  )
+  local attrs = {["data-bs-ride"] = autoplay}
+  if style then
+    attrs["style"] = style
+  end
+
+  local div_carousel_attr = pandoc.Attr(id, {"carousel", "carousel-dark", "slide"}, attrs)
+
+  -- if style then
+  --   table.insert(div_carousel_attr.attributes, {style = style})
+  -- end
+
   local div_carousel = pandoc.Div({}, div_carousel_attr)
+
+
+
+  -- Make it framed, if necessary
+  if framed == "true" then
+    div_carousel.classes:insert("carousel-framed")
+  end
 
   -- Add slide indicators to carousel, if required
   if show_indicators and show_indicators ~= "false" then
