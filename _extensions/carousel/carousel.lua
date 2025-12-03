@@ -1,5 +1,3 @@
--- TODO: Pass styles
-
 --- Generate unique carousel ID
 local carousel_count = 0
 local function unique_carousel_id()
@@ -8,12 +6,18 @@ local function unique_carousel_id()
 end
 
 
-function create_slide(is_active, duration)
-  classes = {"carousel-item"}
+function create_slide(is_active, duration, style)
+  local classes = {"carousel-item"}
+  local attrs = {["data-bs-interval"] = tostring(duration)}
   if is_active then
-    classes = {"carousel-item", "active"}
+    table.insert(classes, "active")
   end
-  return pandoc.Div({}, pandoc.Attr("", classes, {["data-bs-interval"] = tostring(duration)}))
+
+  if style and style ~= "" then
+    attrs["style"] = style
+  end
+
+  return pandoc.Div({}, pandoc.Attr("", classes, attrs))
 end
 
 
@@ -137,6 +141,7 @@ function Div(el)
       local image_source = block.attributes["image"] or ""
       local caption = block.attributes["caption"] or ""
       local slide_duration = block.attributes["duration"] or duration
+      local slide_style = block.attributes["style"] or nil
 
       local slide = create_slide(i == 1, slide_duration)
       local indicator = create_indicator(id, i, i == 1)
