@@ -1,0 +1,5 @@
+project:
+  type: website
+  preview:
+    port: 4200
+  output-dir: _site

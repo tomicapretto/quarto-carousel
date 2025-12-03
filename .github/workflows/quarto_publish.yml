@@ -20,12 +20,13 @@ jobs:
 
       - name: Render Webpage
         shell: bash
-        run: quarto render example.qmd --output index.html
+        run: quarto render
 
       - name: Publish to GitHub
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
           render: false
+          path: _site
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
