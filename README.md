@@ -69,8 +69,6 @@ Rendered output of `example.qmd` in HTML format: [https://tomicapretto.com/quart
 
 ## Photo Credits
 
-<div align="center">
-
 <figure>
   <img
     src="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg"
@@ -154,6 +152,5 @@ Photo by <a href="https://unsplash.com/@luukski">Luuk Wouters</a> on <a href="ht
   </figcaption>
 </figure>
 
-</div>
 
 
