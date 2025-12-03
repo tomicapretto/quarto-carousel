@@ -1,20 +1,35 @@
 ---
 title: "Carousel Filter Demo"
 format: html
-embed-resources: true
 filters:
   - carousel
 ---
 
-# Carousel Examples
+This document demonstrates the `quarto-carousel` filter, which wraps
+[Bootstrap's Carousel Component](https://getbootstrap.com/docs/5.3/components/carousel/).
 
-This document demonstrates the quarto-carousel extension with different syntax options.
 
-## Example 0: Simplest carousels
 
-### Text only
+## Default carousels
+
+### Images
 
 :::: {.carousel}
+
+:::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg"}
+:::
+
+:::: {.carousel-item image="assets/imgs/bariloche_emilio-lujan_cropped.jpg"}
+:::
+
+:::: {.carousel-item image="assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg"}
+:::
+
+:::
+
+### Text with dark theme
+
+:::: {.carousel .dark}
 
 :::: {.carousel-item}
 Slide 1
@@ -28,81 +43,139 @@ Multiple lines, too.
 
 :::
 
-### Images only
+## Minimalist carousel
 
-:::: {.carousel}
+### Default duration
 
-:::: {.carousel-item image="assets/imgs/assymetric_laplace.png" caption="Assymetric Laplace"}
+:::: {.carousel controls="false" indicators="false"}
+
+:::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg"}
 :::
 
-:::: {.carousel-item image="assets/imgs/logit_normal.png" caption="Logit Normal"}
+:::: {.carousel-item image="assets/imgs/bariloche_emilio-lujan_cropped.jpg"}
 :::
 
-:::: {.carousel-item image="assets/imgs/kumaraswamy.png" caption="Kumaraswamy"}
-:::
-
-:::
-
-## Example 1: Images and text without autoplay
-
-:::: {.carousel autoplay="false"}
-
-:::: {.carousel-item image="assets/imgs/assymetric_laplace.png" caption="The caption"}
-
-Overlay text
-
-:::
-
-:::: {.carousel-item image="assets/imgs/logit_normal.png" caption="the caption 2"}
-
-Another overlay text
-
-Which is a bit longer
-
+:::: {.carousel-item image="assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg"}
 :::
 
 :::
 
+### Custom duration
 
-## Exaple 2: No transition
+:::: {.carousel controls="false" indicators="false" duration=1500}
 
-:::: {.carousel autoplay="false" transition="none"}
+:::: {.carousel-item image="assets/imgs/jujuy_hector-ramon-perez_cropped.jpg"}
+:::
+
+:::: {.carousel-item image="assets/imgs/ushuaia_luuk-wouters_cropped.jpg"}
+:::
+
+:::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg"}
+:::
+
+:::
+
+## Framed carousels
+
+### With captions
+
+:::: {.carousel .dark .framed}
+
+:::: {.carousel-item image="assets/imgs/areco-nicolas-taylor_cropped.jpg" caption="Gauchos and horses in San Antonio de Areco"}
+:::
+
+:::: {.carousel-item image="assets/imgs/humahuaca_transly-translation-agency_cropped.jpg" caption="Llamas on Humahuaqueña grassland"}
+:::
+
+:::: {.carousel-item image="assets/imgs//mendoza_nicolas-perez_cropped.jpg" caption="Mendoza purple-petaled flowers"}
+:::
+
+:::
+
+### Without indicator buttons
+
+:::: {.carousel .dark .framed indicators="false"}
+
+:::: {.carousel-item image="assets/imgs/ushuaia_luuk-wouters_cropped.jpg" caption="Les Eclaireurs Lighthouse in Tierra del Fuego"}
+:::
+
+:::: {.carousel-item image="assets/imgs/iguazu_derek-oyen_cropped.jpg" caption="Argentine side of Iguazú Falls"}
+:::
+
+:::: {.carousel-item image="assets/imgs/jujuy_hector-ramon-perez_cropped.jpg" caption="Serranias del Hornocal in Jujuy"}
+:::
+
+:::
+
+### Without autoplay
+
+:::: {.carousel .dark .framed indicators="false" autoplay="false"}
+
+:::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" caption="Puente Rosario-Victoria"}
+:::
+
+:::: {.carousel-item image="assets/imgs/bariloche_emilio-lujan_cropped.jpg" caption="San Carlos de Bariloche, Rio Negro"}
+:::
+
+:::: {.carousel-item image="assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg"}
+:::
+
+:::
+
+### Without transition
+
+:::: {.carousel .dark autoplay="false" transition="none"}
 
 :::: {.carousel-item}
-this moves
+The transition
 :::
 
 :::: {.carousel-item}
-without transition
+Can go away
+:::
+
+:::: {.carousel-item}
+If you need it
 :::
 
 :::
 
 
-## Example 3: Framed
+## Slides with style
 
-:::: {.carousel autoplay="false" framed="true"}
+### Background color
 
-:::: {.carousel-item image="assets/imgs/assymetric_laplace.png" caption="Assymetric Laplace"}
+:::: {.carousel .dark .framed indicators="false" autoplay="false"}
+
+:::: {.carousel-item style="background-color:rgba(0, 0, 0, 0.2);" caption="Has a caption"}
+Slide 1
 :::
 
-:::: {.carousel-item image="assets/imgs/logit_normal.png" caption="Logit Normal"}
+:::: {.carousel-item style="background-color:rgba(0, 0, 0, 0.4);"}
+Slide 2, does not
 :::
 
-:::: {.carousel-item image="assets/imgs/kumaraswamy.png" caption="Kumaraswamy"}
-:::
-:::
-
-## Example 4: Framed, with styles
-
-:::: {.carousel autoplay="false" framed="true" style="border: 2px solid red;"}
-
-:::: {.carousel-item image="assets/imgs/assymetric_laplace.png" caption="Assymetric Laplace"}
+:::: {.carousel-item style="background-color:rgba(0, 0, 0, 0.6);" caption="bring it back!"}
+But then we can
 :::
 
-:::: {.carousel-item image="assets/imgs/logit_normal.png" caption="Logit Normal"}
 :::
 
-:::: {.carousel-item image="assets/imgs/kumaraswamy.png" caption="Kumaraswamy"}
+
+### Multiple heights
+
+:::: {.carousel .dark .framed indicators="false" autoplay="false"}
+
+:::: {.carousel-item style="background-color:rgba(159,188,174, 1);" caption="Default height"}
+Is this...
 :::
+
+:::: {.carousel-item style="background-color:rgba(175,199,188, 1); height: 400px;" caption="400px"}
+going alright?
+:::
+
+:::: {.carousel-item style="background-color:rgba(191,210,201, 1); height: 600px;" caption="that's too much!"}
+Oh, no!
+:::
+
 :::

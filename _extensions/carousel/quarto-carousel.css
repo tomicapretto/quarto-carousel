@@ -1,42 +1,70 @@
 .carousel-item {
   min-height: 300px;
+  position: relative;
+  box-sizing: border-box;
 }
 
+.carousel-item img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
 .carousel-item .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: 20;
+  pointer-events: none; /* optional */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+
+/* .carousel-item .overlay {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 20;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* optional */
-}
+  pointer-events: none;
+} */
 
 /* Remove transitions when .carousel-item _and_ .no-transition*/
 .carousel-item.no-transition {
   transition: none !important;
 }
 
-
 /* Constrained carousel */
+.carousel.carousel-framed{
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+}
 
-/* div.carousel {
-  margin-top: 2rem;
-} */
+.carousel.carousel-framed .carousel-item {
+  padding-bottom: 110px;
+  background-clip: content-box;
+}
 
-/* .carousel.card {
-  padding-top: 2em;
-} */
-
-.carousel.carousel-framed img {
-  max-width: 75%;
-  margin-bottom: 110px;
+.carousel.carousel-framed .overlay {
+  box-sizing: border-box;
+  padding-bottom: 110px;
 }
 
 .carousel.carousel-framed .carousel-control-prev-icon,
 .carousel.carousel-framed .carousel-control-next-icon {
-  margin-bottom: 110px;
+    margin-bottom: 110px;
 }
+
 
 .carousel.carousel-framed .carousel-caption {
   padding-top: 1em;

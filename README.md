@@ -1,6 +1,25 @@
 # Bootstrap Carousel for Quarto
 
-Work in progress...
+This extension exposes [Bootstrap’s Carousel component](https://getbootstrap.com/docs/5.3/components/carousel/) for use in Quarto HTML documents.
+
+## Installation
+
+```sh
+quarto add tomicapretto/quarto-carousel
+```
+
+This command installs the extension under the `_extensions` directory.
+
+If you are using version control, make sure to commit this directory.
+
+## Example
+
+Here is the source code for a minimal example: [example.qmd](example.qmd)
+
+Rendered output of `example.qmd`:
+
+* **HTML:** [https://tomicapretto.com/quarto-carousel/](https://tomicapretto.com/quarto-carousel/)
+
 
 ## Photo Credits
 

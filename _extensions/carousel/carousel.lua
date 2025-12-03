@@ -32,7 +32,7 @@ function create_overlay(content)
     inner_div,
     pandoc.Attr(
       "",
-      {"overlay", "d-flex", "flex-column", "align-items-center", "justify-content-center", "text-center"}
+      {"overlay"}
     )
   )
   return outer_div
@@ -130,8 +130,9 @@ function Div(el)
   local duration = tonumber(el.attributes["duration"]) or 3000
   local autoplay = el.attributes["autoplay"] or "carousel"
   local transition = el.attributes["transition"] or "default"
-  local framed = el.attributes["framed"] or "false"
   local style = el.attributes["style"] or nil
+  local is_framed = el.classes:includes("framed")
+  local is_dark = el.classes:includes("dark")
 
   -- Initialize empty tables for slides and indicators. There's one indicator per slide.
   local slides = {}
@@ -143,7 +144,7 @@ function Div(el)
       local slide_duration = block.attributes["duration"] or duration
       local slide_style = block.attributes["style"] or nil
 
-      local slide = create_slide(i == 1, slide_duration)
+      local slide = create_slide(i == 1, slide_duration, slide_style)
       local indicator = create_indicator(id, i, i == 1)
 
       -- Add image, if available
@@ -178,18 +179,17 @@ function Div(el)
     attrs["style"] = style
   end
 
-  local div_carousel_attr = pandoc.Attr(id, {"carousel", "carousel-dark", "slide"}, attrs)
+  local classes = {"carousel"}
+  if is_dark then
+    table.insert(classes, "carousel-dark")
+  end
+  table.insert(classes, "slide")
 
-  -- if style then
-  --   table.insert(div_carousel_attr.attributes, {style = style})
-  -- end
-
+  local div_carousel_attr = pandoc.Attr(id, classes, attrs)
   local div_carousel = pandoc.Div({}, div_carousel_attr)
 
-
-
   -- Make it framed, if necessary
-  if framed == "true" then
+  if is_framed then
     div_carousel.classes:insert("carousel-framed")
   end
 
