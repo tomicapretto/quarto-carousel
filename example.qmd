@@ -1,8 +1,6 @@
 ---
 title: "Quarto Carousel Demo"
-format:
-  html:
-    code-fold: true
+format: html
 filters:
   - carousel
 ---
@@ -11,7 +9,6 @@ This document demonstrates the `quarto-carousel` filter, which wraps
 [Bootstrap's Carousel Component](https://getbootstrap.com/docs/5.3/components/carousel/).
 
 Find the extension at [github.com/tomicapretto/quarto-carousel](https://github.com/tomicapretto/quarto-carousel).
-
 
 ## Default carousels
 

@@ -12,18 +12,64 @@ This command installs the extension under the `_extensions` directory.
 
 If you are using version control, make sure to commit this directory.
 
+## Usage
+
+Include the following in your YAML front matter to activate the filter:
+
+```yaml
+filters:
+  - carousel
+```
+
+Then, you can create (text based) carousels in the following way:
+
+```markdown
+:::: {.carousel}
+
+:::: {.carousel-item}
+Slide 1
+:::
+
+:::: {.carousel-item}
+Slide 2
+
+Multiple lines, too.
+:::
+
+:::: {.carousel-item}
+Slide 3
+:::
+
+:::
+```
+
+Or image-based carousels like this:
+
+```markdown
+:::: {.carousel}
+
+:::: {.carousel-item image="path/to/image.jpg"}
+:::
+
+:::: {.carousel-item image="path/to/image2.jpg"}
+:::
+
+:::: {.carousel-item image="path/to/image3.jpg"}
+:::
+
+:::
+```
+
 ## Example
 
-Here is the source code for a minimal example: [example.qmd](example.qmd)
+Here is the source code for a minimal example: [example.qmd](example.qmd).
 
-Rendered output of `example.qmd`:
-
-* **HTML:** [https://tomicapretto.com/quarto-carousel/](https://tomicapretto.com/quarto-carousel/)
+Rendered output of `example.qmd` in HTML format: [https://tomicapretto.com/quarto-carousel/](https://tomicapretto.com/quarto-carousel/).
 
 
 ## Photo Credits
 
-<center>
+<div align="center">
 
 <figure>
   <img
@@ -108,6 +154,6 @@ Photo by <a href="https://unsplash.com/@luukski">Luuk Wouters</a> on <a href="ht
   </figcaption>
 </figure>
 
-</center>
+</div>
 
 
