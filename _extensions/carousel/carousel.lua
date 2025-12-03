@@ -1,12 +1,33 @@
+
+--- @file carousel.lua
+--- @brief Quarto filter to create Bootstrap Carousels in HTML documents
+--- @description This filter allows you to create carousels using Bootstrap in a Quarto document.
+--- It supports carousels with images, text, and captions.
+--- The filter allows users to customize both the carousel and the individual slides.
+
+--- Extension name constant
+--- @type string
+local EXTENSION_NAME = "quarto-carousel"
+
 --- Generate unique carousel ID
+--- @type integer
 local carousel_count = 0
+
+--- Generate unique ID for carousels
+---
+--- @return string The ID with format `"quarto-carousel-%d"`
 local function unique_carousel_id()
   carousel_count = carousel_count + 1
   return "quarto-carousel-" .. tostring(carousel_count)
 end
 
-
-function create_slide(is_active, duration, style)
+--- Create slide for the carousel
+---
+--- @param is_active boolean Whether the slide is active (viewable).
+--- @param duration number Time delay before cycling to the next slide (ms).
+--- @param style string|nil Optional styles that are added to the div.
+--- @return pandoc.Div out A div with class `"carousel-item"` and optionally `"active"`.
+local function create_slide(is_active, duration, style)
   local classes = {"carousel-item"}
   local attrs = {["data-bs-interval"] = tostring(duration)}
   if is_active then
@@ -16,30 +37,34 @@ function create_slide(is_active, duration, style)
   if style and style ~= "" then
     attrs["style"] = style
   end
-
-  return pandoc.Div({}, pandoc.Attr("", classes, attrs))
+  local out = pandoc.Div({}, pandoc.Attr("", classes, attrs))
+  return out
 end
 
-
-function create_image( source)
-  return pandoc.Image({}, source, "", pandoc.Attr("", {"d-block", "mx-auto"}))
+--- Create Image element from source string.
+---
+--- @param source string The source of the image.
+--- @return pandoc.Image img The image, with classes `{"d-block", "mx-auto"}`.
+local function create_image(source)
+  local img = pandoc.Image({}, source, "", pandoc.Attr("", {"d-block", "mx-auto"}))
+  return img
 end
 
-
-function create_overlay(content)
+--- Create overlay Div
+---
+--- @param content table A table with arbitrary contents to put in a div.
+--- @return pandoc.Div out A div with class `"overlay"`. Its contents are on top of the slide.
+local function create_overlay(content)
   inner_div = pandoc.Div(content, pandoc.Attr("", {"fs-2", "fw-bold"}))
-  outer_div = pandoc.Div(
-    inner_div,
-    pandoc.Attr(
-      "",
-      {"overlay"}
-    )
-  )
-  return outer_div
+  local out = pandoc.Div(inner_div, pandoc.Attr("", {"overlay"}))
+  return out
 end
 
-
-function create_caption(text)
+--- Create caption div
+---
+--- @param text string The text for the slide caption.
+--- @return pandoc.Div out A div with classes `{"carousel-caption", "d-none", "d-md-block"}`.
+local function create_caption(text)
   -- NOTE: How could we make captions more flexible?
 
   -- Replace <br> with a newline character (\n)
@@ -55,14 +80,20 @@ function create_caption(text)
     first = false
   end
 
-  return pandoc.Div(
+  local out = pandoc.Div(
     { pandoc.Para(inlines) },
     pandoc.Attr("", {"carousel-caption", "d-none", "d-md-block"})
   )
+  return out
 end
 
-
-function create_indicator(id, index, is_active)
+--- Create navigation button
+---
+---@param id string The ID of the carousel associated with the navigation button.
+---@param index integer The slide index.
+---@param is_active boolean Whether the slide is active (viewable).
+---@return pandoc.RawBlock out A block containing a button for carousel navigation
+local function create_indicator(id, index, is_active)
   -- NOTE: It is not possible to create a button using Pandoc API, so we use RawBlocks
   local extra_class = ""
   local aria_current = ""
@@ -81,11 +112,15 @@ function create_indicator(id, index, is_active)
     aria-label="Slide %d"></button>
   ]]
   local button = string.format(template, id, index - 1, extra_class, aria_current, index)
-  return pandoc.RawBlock("html", button)
+  local out = pandoc.RawBlock("html", button)
+  return out
 end
 
-
-function create_controls(id)
+--- Create control buttons
+---
+---@param id string The ID of the carousel associated with the control buttons.
+---@return pandoc.RawBlock, pandoc.RawBlock ... The control buttons.
+local function create_controls(id)
   -- NOTE: It is not possible to create a button using Pandoc API, so we use RawBlocks
   local prev = string.format([[
       <button class="carousel-control-prev" type="button"
@@ -106,11 +141,14 @@ function create_controls(id)
     ]],
     id
   )
-  return {pandoc.RawBlock("html", prev), pandoc.RawBlock("html", next)}
+  return pandoc.RawBlock("html", prev), pandoc.RawBlock("html", next)
 end
 
-
-function Div(el)
+--- Process `pandoc.Div` with the carousel filter
+---
+---@param el pandoc.Div The div to process.
+---@return pandoc.RawBlock|nil out `The raw HTML block if the filter is effectively applied, else `nil`.
+local function process_div(el)
   -- Only work with HTML output formats
   if not quarto.doc.is_format("html")
     or not quarto.doc.has_bootstrap()
@@ -205,10 +243,17 @@ function Div(el)
 
   -- Add controls to carousel, if required
   if show_controls and show_controls ~= "false" then
-    local controls_elements = create_controls(id)
-    div_carousel.content:insert(controls_elements[1])
-    div_carousel.content:insert(controls_elements[2])
+    local control_prev, control_next = create_controls(id)
+    div_carousel.content:insert(control_prev)
+    div_carousel.content:insert(control_next)
   end
 
-  return pandoc.RawBlock("html", pandoc.write(pandoc.Pandoc(div_carousel), "html"))
+  local out = pandoc.RawBlock("html", pandoc.write(pandoc.Pandoc(div_carousel), "html"))
+  return out
 end
+
+
+--- Pandoc filter configuration
+return {
+  { Div = process_div }
+}
