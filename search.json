@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "example.html",
+    "href": "example.html",
+    "title": "Carousel Filter Demo",
+    "section": "",
+    "text": "This document demonstrates the quarto-carousel filter, which wraps Bootstrap’s Carousel Component."
+  },
+  {
+    "objectID": "example.html#default-carousels",
+    "href": "example.html#default-carousels",
+    "title": "Carousel Filter Demo",
+    "section": "Default carousels",
+    "text": "Default carousels\n\nImages\n\n\n  \n  \n  \n  \n  \n  \n\n\n\n\n\n\n\n\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nText with dark theme\n\n\n  \n  \n  \n  \n\n\n\n\n\nSlide 1\n\n\n\n\n\n\nSlide 2\nMultiple lines, too.\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next"
+  },
+  {
+    "objectID": "example.html#minimalist-carousel",
+    "href": "example.html#minimalist-carousel",
+    "title": "Carousel Filter Demo",
+    "section": "Minimalist carousel",
+    "text": "Minimalist carousel\n\nDefault duration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCustom duration"
+  },
+  {
+    "objectID": "example.html#framed-carousels",
+    "href": "example.html#framed-carousels",
+    "title": "Carousel Filter Demo",
+    "section": "Framed carousels",
+    "text": "Framed carousels\n\nWith captions\n\n\n  \n  \n  \n  \n  \n  \n\n\n\n\n\nGauchos and horses in San Antonio de Areco\n\n\n\n\n\nLlamas on Humahuaqueña grassland\n\n\n\n\n\nMendoza purple-petaled flowers\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nWithout indicator buttons\n\n\n\n\n\nLes Eclaireurs Lighthouse in Tierra del Fuego\n\n\n\n\n\nArgentine side of Iguazú Falls\n\n\n\n\n\nSerranias del Hornocal in Jujuy\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nWithout autoplay\n\n\n\n\n\nPuente Rosario-Victoria\n\n\n\n\n\nSan Carlos de Bariloche, Rio Negro\n\n\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nWithout transition\n\n\n  \n  \n  \n  \n  \n  \n\n\n\n\n\nThe transition\n\n\n\n\n\n\nCan go away\n\n\n\n\n\n\nIf you need it\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next"
+  },
+  {
+    "objectID": "example.html#slides-with-style",
+    "href": "example.html#slides-with-style",
+    "title": "Carousel Filter Demo",
+    "section": "Slides with style",
+    "text": "Slides with style\n\nBackground color\n\n\n\n\nHas a caption\n\n\n\nSlide 1\n\n\n\n\n\n\nSlide 2, does not\n\n\n\n\n\nbring it back!\n\n\n\nBut then we can\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nMultiple heights\n\n\n\n\nDefault height\n\n\n\nIs this…\n\n\n\n\n\n400px\n\n\n\ngoing alright?\n\n\n\n\n\nthat's too much!\n\n\n\nOh, no!\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next"
+  }
+]
