@@ -2,36 +2,36 @@
   {
     "objectID": "example.html",
     "href": "example.html",
-    "title": "Carousel Filter Demo",
+    "title": "Quarto Carousel Demo",
     "section": "",
-    "text": "This document demonstrates the quarto-carousel filter, which wraps Bootstrap’s Carousel Component."
+    "text": "This document demonstrates the quarto-carousel filter, which wraps Bootstrap’s Carousel Component.\nFind the extension at github.com/tomicapretto/quarto-carousel."
   },
   {
     "objectID": "example.html#default-carousels",
     "href": "example.html#default-carousels",
-    "title": "Carousel Filter Demo",
+    "title": "Quarto Carousel Demo",
     "section": "Default carousels",
-    "text": "Default carousels\n\nImages\n\n\n  \n  \n  \n  \n  \n  \n\n\n\n\n\n\n\n\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nText with dark theme\n\n\n  \n  \n  \n  \n\n\n\n\n\nSlide 1\n\n\n\n\n\n\nSlide 2\nMultiple lines, too.\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next"
+    "text": "Default carousels\n\nImages\n:::: {.carousel}\n\n:::: {.carousel-item image=\"assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg\"}\n:::\n\n:::: {.carousel-item image=\"assets/imgs/bariloche_emilio-lujan_cropped.jpg\"}\n:::\n\n:::: {.carousel-item image=\"assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg\"}\n:::\n\n:::\n\n\n  \n  \n  \n  \n  \n  \n\n\n\n\n\n\n\n\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nText with dark theme\n:::: {.carousel .dark}\n\n:::: {.carousel-item}\nSlide 1\n:::\n\n:::: {.carousel-item}\nSlide 2\n\nMultiple lines, too.\n:::\n\n:::\n\n\n  \n  \n  \n  \n\n\n\n\n\nSlide 1\n\n\n\n\n\n\nSlide 2\nMultiple lines, too.\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next"
   },
   {
     "objectID": "example.html#minimalist-carousel",
     "href": "example.html#minimalist-carousel",
-    "title": "Carousel Filter Demo",
+    "title": "Quarto Carousel Demo",
     "section": "Minimalist carousel",
-    "text": "Minimalist carousel\n\nDefault duration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCustom duration"
+    "text": "Minimalist carousel\n\nDefault duration\n:::: {.carousel controls=\"false\" indicators=\"false\"}\n\n:::: {.carousel-item image=\"assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg\"}\n:::\n\n:::: {.carousel-item image=\"assets/imgs/bariloche_emilio-lujan_cropped.jpg\"}\n:::\n\n:::: {.carousel-item image=\"assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg\"}\n:::\n\n:::\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCustom duration\n:::: {.carousel controls=\"false\" indicators=\"false\" duration=1500}\n\n:::: {.carousel-item image=\"assets/imgs/jujuy_hector-ramon-perez_cropped.jpg\"}\n:::\n\n:::: {.carousel-item image=\"assets/imgs/ushuaia_luuk-wouters_cropped.jpg\"}\n:::\n\n:::: {.carousel-item image=\"assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg\"}\n:::\n\n:::"
   },
   {
     "objectID": "example.html#framed-carousels",
     "href": "example.html#framed-carousels",
-    "title": "Carousel Filter Demo",
+    "title": "Quarto Carousel Demo",
     "section": "Framed carousels",
-    "text": "Framed carousels\n\nWith captions\n\n\n  \n  \n  \n  \n  \n  \n\n\n\n\n\nGauchos and horses in San Antonio de Areco\n\n\n\n\n\nLlamas on Humahuaqueña grassland\n\n\n\n\n\nMendoza purple-petaled flowers\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nWithout indicator buttons\n\n\n\n\n\nLes Eclaireurs Lighthouse in Tierra del Fuego\n\n\n\n\n\nArgentine side of Iguazú Falls\n\n\n\n\n\nSerranias del Hornocal in Jujuy\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nWithout autoplay\n\n\n\n\n\nPuente Rosario-Victoria\n\n\n\n\n\nSan Carlos de Bariloche, Rio Negro\n\n\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nWithout transition\n\n\n  \n  \n  \n  \n  \n  \n\n\n\n\n\nThe transition\n\n\n\n\n\n\nCan go away\n\n\n\n\n\n\nIf you need it\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next"
+    "text": "Framed carousels\n\nWith captions\n:::: {.carousel .dark .framed}\n\n:::: {.carousel-item image=\"assets/imgs/areco-nicolas-taylor_cropped.jpg\" caption=\"Gauchos and horses in San Antonio de Areco\"}\n:::\n\n:::: {.carousel-item image=\"assets/imgs/humahuaca_transly-translation-agency_cropped.jpg\" caption=\"Llamas on Humahuaqueña grassland\"}\n:::\n\n:::: {.carousel-item image=\"assets/imgs//mendoza_nicolas-perez_cropped.jpg\" caption=\"Mendoza purple-petaled flowers\"}\n:::\n\n:::\n\n\n  \n  \n  \n  \n  \n  \n\n\n\n\n\nGauchos and horses in San Antonio de Areco\n\n\n\n\n\nLlamas on Humahuaqueña grassland\n\n\n\n\n\nMendoza purple-petaled flowers\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nWithout indicator buttons\n:::: {.carousel .dark .framed indicators=\"false\"}\n\n:::: {.carousel-item image=\"assets/imgs/ushuaia_luuk-wouters_cropped.jpg\" caption=\"Les Eclaireurs Lighthouse in Tierra del Fuego\"}\n:::\n\n:::: {.carousel-item image=\"assets/imgs/iguazu_derek-oyen_cropped.jpg\" caption=\"Argentine side of Iguazú Falls\"}\n:::\n\n:::: {.carousel-item image=\"assets/imgs/jujuy_hector-ramon-perez_cropped.jpg\" caption=\"Serranias del Hornocal in Jujuy\"}\n:::\n\n:::\n\n\n\n\n\nLes Eclaireurs Lighthouse in Tierra del Fuego\n\n\n\n\n\nArgentine side of Iguazú Falls\n\n\n\n\n\nSerranias del Hornocal in Jujuy\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nWithout autoplay\n:::: {.carousel .dark .framed indicators=\"false\" autoplay=\"false\"}\n\n:::: {.carousel-item image=\"assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg\" caption=\"Puente Rosario-Victoria\"}\n:::\n\n:::: {.carousel-item image=\"assets/imgs/bariloche_emilio-lujan_cropped.jpg\" caption=\"San Carlos de Bariloche, Rio Negro\"}\n:::\n\n:::: {.carousel-item image=\"assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg\"}\n:::\n\n:::\n\n\n\n\n\nPuente Rosario-Victoria\n\n\n\n\n\nSan Carlos de Bariloche, Rio Negro\n\n\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nWithout transition\n:::: {.carousel .dark autoplay=\"false\" transition=\"none\"}\n\n:::: {.carousel-item}\nThe transition\n:::\n\n:::: {.carousel-item}\nCan go away\n:::\n\n:::: {.carousel-item}\nIf you need it\n:::\n\n:::\n\n\n  \n  \n  \n  \n  \n  \n\n\n\n\n\nThe transition\n\n\n\n\n\n\nCan go away\n\n\n\n\n\n\nIf you need it\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next"
   },
   {
     "objectID": "example.html#slides-with-style",
     "href": "example.html#slides-with-style",
-    "title": "Carousel Filter Demo",
+    "title": "Quarto Carousel Demo",
     "section": "Slides with style",
-    "text": "Slides with style\n\nBackground color\n\n\n\n\nHas a caption\n\n\n\nSlide 1\n\n\n\n\n\n\nSlide 2, does not\n\n\n\n\n\nbring it back!\n\n\n\nBut then we can\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nMultiple heights\n\n\n\n\nDefault height\n\n\n\nIs this…\n\n\n\n\n\n400px\n\n\n\ngoing alright?\n\n\n\n\n\nthat's too much!\n\n\n\nOh, no!\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next"
+    "text": "Slides with style\n\nBackground color\n:::: {.carousel .dark .framed indicators=\"false\" autoplay=\"false\"}\n\n:::: {.carousel-item style=\"background-color:rgba(0, 0, 0, 0.2);\" caption=\"Has a caption\"}\nSlide 1\n:::\n\n:::: {.carousel-item style=\"background-color:rgba(0, 0, 0, 0.4);\"}\nSlide 2, does not\n:::\n\n:::: {.carousel-item style=\"background-color:rgba(0, 0, 0, 0.6);\" caption=\"bring it back!\"}\nBut then we can\n:::\n\n:::\n\n\n\n\nHas a caption\n\n\n\nSlide 1\n\n\n\n\n\n\nSlide 2, does not\n\n\n\n\n\nbring it back!\n\n\n\nBut then we can\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next\n      \n    \n\n\n\nMultiple heights\n:::: {.carousel .dark .framed indicators=\"false\" autoplay=\"false\"}\n\n:::: {.carousel-item style=\"background-color:rgba(159,188,174, 1);\" caption=\"Default height\"}\nIs this...\n:::\n\n:::: {.carousel-item style=\"background-color:rgba(175,199,188, 1); height: 400px;\" caption=\"400px\"}\ngoing alright?\n:::\n\n:::: {.carousel-item style=\"background-color:rgba(191,210,201, 1); height: 600px;\" caption=\"that's too much!\"}\nOh, no!\n:::\n\n:::\n\n\n\n\nDefault height\n\n\n\nIs this…\n\n\n\n\n\n400px\n\n\n\ngoing alright?\n\n\n\n\n\nthat's too much!\n\n\n\nOh, no!\n\n\n\n\n      \n      \n      Previous\n      \n    \n      \n      \n      Next"
   }
 ]
