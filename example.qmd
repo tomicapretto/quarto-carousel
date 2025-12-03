@@ -1,6 +1,8 @@
 ---
-title: "Carousel Filter Demo"
-format: html
+title: "Quarto Carousel Demo"
+format:
+  html:
+    code-fold: true
 filters:
   - carousel
 ---
@@ -8,11 +10,27 @@ filters:
 This document demonstrates the `quarto-carousel` filter, which wraps
 [Bootstrap's Carousel Component](https://getbootstrap.com/docs/5.3/components/carousel/).
 
+Find the extension at [github.com/tomicapretto/quarto-carousel](https://github.com/tomicapretto/quarto-carousel).
 
 
 ## Default carousels
 
 ### Images
+
+```markdown
+:::: {.carousel}
+
+:::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg"}
+:::
+
+:::: {.carousel-item image="assets/imgs/bariloche_emilio-lujan_cropped.jpg"}
+:::
+
+:::: {.carousel-item image="assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg"}
+:::
+
+:::
+```
 
 :::: {.carousel}
 
@@ -28,6 +46,22 @@ This document demonstrates the `quarto-carousel` filter, which wraps
 :::
 
 ### Text with dark theme
+
+```markdown
+:::: {.carousel .dark}
+
+:::: {.carousel-item}
+Slide 1
+:::
+
+:::: {.carousel-item}
+Slide 2
+
+Multiple lines, too.
+:::
+
+:::
+```
 
 :::: {.carousel .dark}
 
@@ -47,6 +81,21 @@ Multiple lines, too.
 
 ### Default duration
 
+```markdown
+:::: {.carousel controls="false" indicators="false"}
+
+:::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg"}
+:::
+
+:::: {.carousel-item image="assets/imgs/bariloche_emilio-lujan_cropped.jpg"}
+:::
+
+:::: {.carousel-item image="assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg"}
+:::
+
+:::
+```
+
 :::: {.carousel controls="false" indicators="false"}
 
 :::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg"}
@@ -61,6 +110,21 @@ Multiple lines, too.
 :::
 
 ### Custom duration
+
+```markdown
+:::: {.carousel controls="false" indicators="false" duration=1500}
+
+:::: {.carousel-item image="assets/imgs/jujuy_hector-ramon-perez_cropped.jpg"}
+:::
+
+:::: {.carousel-item image="assets/imgs/ushuaia_luuk-wouters_cropped.jpg"}
+:::
+
+:::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg"}
+:::
+
+:::
+```
 
 :::: {.carousel controls="false" indicators="false" duration=1500}
 
@@ -79,6 +143,21 @@ Multiple lines, too.
 
 ### With captions
 
+```markdown
+:::: {.carousel .dark .framed}
+
+:::: {.carousel-item image="assets/imgs/areco-nicolas-taylor_cropped.jpg" caption="Gauchos and horses in San Antonio de Areco"}
+:::
+
+:::: {.carousel-item image="assets/imgs/humahuaca_transly-translation-agency_cropped.jpg" caption="Llamas on Humahuaqueña grassland"}
+:::
+
+:::: {.carousel-item image="assets/imgs//mendoza_nicolas-perez_cropped.jpg" caption="Mendoza purple-petaled flowers"}
+:::
+
+:::
+```
+
 :::: {.carousel .dark .framed}
 
 :::: {.carousel-item image="assets/imgs/areco-nicolas-taylor_cropped.jpg" caption="Gauchos and horses in San Antonio de Areco"}
@@ -93,6 +172,21 @@ Multiple lines, too.
 :::
 
 ### Without indicator buttons
+
+```markdown
+:::: {.carousel .dark .framed indicators="false"}
+
+:::: {.carousel-item image="assets/imgs/ushuaia_luuk-wouters_cropped.jpg" caption="Les Eclaireurs Lighthouse in Tierra del Fuego"}
+:::
+
+:::: {.carousel-item image="assets/imgs/iguazu_derek-oyen_cropped.jpg" caption="Argentine side of Iguazú Falls"}
+:::
+
+:::: {.carousel-item image="assets/imgs/jujuy_hector-ramon-perez_cropped.jpg" caption="Serranias del Hornocal in Jujuy"}
+:::
+
+:::
+```
 
 :::: {.carousel .dark .framed indicators="false"}
 
@@ -109,6 +203,21 @@ Multiple lines, too.
 
 ### Without autoplay
 
+```markdown
+:::: {.carousel .dark .framed indicators="false" autoplay="false"}
+
+:::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" caption="Puente Rosario-Victoria"}
+:::
+
+:::: {.carousel-item image="assets/imgs/bariloche_emilio-lujan_cropped.jpg" caption="San Carlos de Bariloche, Rio Negro"}
+:::
+
+:::: {.carousel-item image="assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg"}
+:::
+
+:::
+```
+
 :::: {.carousel .dark .framed indicators="false" autoplay="false"}
 
 :::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" caption="Puente Rosario-Victoria"}
@@ -123,6 +232,24 @@ Multiple lines, too.
 :::
 
 ### Without transition
+
+```markdown
+:::: {.carousel .dark autoplay="false" transition="none"}
+
+:::: {.carousel-item}
+The transition
+:::
+
+:::: {.carousel-item}
+Can go away
+:::
+
+:::: {.carousel-item}
+If you need it
+:::
+
+:::
+```
 
 :::: {.carousel .dark autoplay="false" transition="none"}
 
@@ -140,10 +267,27 @@ If you need it
 
 :::
 
-
 ## Slides with style
 
 ### Background color
+
+```markdown
+:::: {.carousel .dark .framed indicators="false" autoplay="false"}
+
+:::: {.carousel-item style="background-color:rgba(0, 0, 0, 0.2);" caption="Has a caption"}
+Slide 1
+:::
+
+:::: {.carousel-item style="background-color:rgba(0, 0, 0, 0.4);"}
+Slide 2, does not
+:::
+
+:::: {.carousel-item style="background-color:rgba(0, 0, 0, 0.6);" caption="bring it back!"}
+But then we can
+:::
+
+:::
+```
 
 :::: {.carousel .dark .framed indicators="false" autoplay="false"}
 
@@ -163,6 +307,24 @@ But then we can
 
 
 ### Multiple heights
+
+```markdown
+:::: {.carousel .dark .framed indicators="false" autoplay="false"}
+
+:::: {.carousel-item style="background-color:rgba(159,188,174, 1);" caption="Default height"}
+Is this...
+:::
+
+:::: {.carousel-item style="background-color:rgba(175,199,188, 1); height: 400px;" caption="400px"}
+going alright?
+:::
+
+:::: {.carousel-item style="background-color:rgba(191,210,201, 1); height: 600px;" caption="that's too much!"}
+Oh, no!
+:::
+
+:::
+```
 
 :::: {.carousel .dark .framed indicators="false" autoplay="false"}
 
