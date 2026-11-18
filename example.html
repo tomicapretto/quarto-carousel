@@ -74,8 +74,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7dacb32eb86166f8c49d4ebac6540e53.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/carousel-0.1.0/quarto-carousel.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e63b203f2ff6ed21a8d6d3ad5cbf2019.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/carousel-1.1.0/quarto-carousel.js"></script>
+<link href="site_libs/quarto-contrib/carousel-1.1.0/quarto-carousel.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,14 +108,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="example.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -143,6 +146,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="default-carousels">Default carousels</h2>
 <section id="images" class="level3">
 <h3 class="anchored" data-anchor-id="images">Images</h3>
+<details>
+<summary>
+View code
+</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>:::: {.carousel}</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>:::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg"}</span>
@@ -155,6 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="quarto-carousel-1" class="carousel slide" data-bs-ride="carousel">
 <div class="carousel-indicators">
   <button type="button" data-bs-target="#quarto-carousel-1" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
@@ -166,13 +174,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="carousel-inner">
 <div class="carousel-item active" data-bs-interval="3000">
-<img src="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 </div>
 <div class="carousel-item" data-bs-interval="3000">
-<img src="assets/imgs/bariloche_emilio-lujan_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/bariloche_emilio-lujan_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 </div>
 <div class="carousel-item" data-bs-interval="3000">
-<img src="assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 </div>
 </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#quarto-carousel-1" data-bs-slide="prev">
@@ -189,6 +197,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="text-with-dark-theme" class="level3">
 <h3 class="anchored" data-anchor-id="text-with-dark-theme">Text with dark theme</h3>
+<details>
+<summary>
+View code
+</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>:::: {.carousel .dark}</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>:::: {.carousel-item}</span>
@@ -202,6 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="quarto-carousel-2" class="carousel carousel-dark slide" data-bs-ride="carousel">
 <div class="carousel-indicators">
   <button type="button" data-bs-target="#quarto-carousel-2" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
@@ -243,6 +256,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="minimalist-carousel">Minimalist carousel</h2>
 <section id="default-duration" class="level3">
 <h3 class="anchored" data-anchor-id="default-duration">Default duration</h3>
+<details>
+<summary>
+View code
+</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>:::: {.carousel controls="false" indicators="false"}</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>:::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg"}</span>
@@ -255,22 +272,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="quarto-carousel-3" class="carousel slide" data-bs-ride="carousel">
 <div class="carousel-inner">
 <div class="carousel-item active" data-bs-interval="3000">
-<img src="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 </div>
 <div class="carousel-item" data-bs-interval="3000">
-<img src="assets/imgs/bariloche_emilio-lujan_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/bariloche_emilio-lujan_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 </div>
 <div class="carousel-item" data-bs-interval="3000">
-<img src="assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 </div>
 </div>
 </div>
 </section>
 <section id="custom-duration" class="level3">
 <h3 class="anchored" data-anchor-id="custom-duration">Custom duration</h3>
+<details>
+<summary>
+View code
+</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>:::: {.carousel controls="false" indicators="false" duration=1500}</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>:::: {.carousel-item image="assets/imgs/jujuy_hector-ramon-perez_cropped.jpg"}</span>
@@ -283,16 +305,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="quarto-carousel-4" class="carousel slide" data-bs-ride="carousel">
 <div class="carousel-inner">
 <div class="carousel-item active" data-bs-interval="1500">
-<img src="assets/imgs/jujuy_hector-ramon-perez_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/jujuy_hector-ramon-perez_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 </div>
 <div class="carousel-item" data-bs-interval="1500">
-<img src="assets/imgs/ushuaia_luuk-wouters_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/ushuaia_luuk-wouters_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 </div>
 <div class="carousel-item" data-bs-interval="1500">
-<img src="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 </div>
 </div>
 </div>
@@ -302,6 +325,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="framed-carousels">Framed carousels</h2>
 <section id="with-captions" class="level3">
 <h3 class="anchored" data-anchor-id="with-captions">With captions</h3>
+<details>
+<summary>
+View code
+</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>:::: {.carousel .dark .framed}</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>:::: {.carousel-item image="assets/imgs/areco-nicolas-taylor_cropped.jpg" caption="Gauchos and horses in San Antonio de Areco"}</span>
@@ -314,6 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="quarto-carousel-5" class="carousel carousel-dark slide carousel-framed" data-bs-ride="carousel">
 <div class="carousel-indicators">
   <button type="button" data-bs-target="#quarto-carousel-5" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
@@ -325,21 +353,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="carousel-inner">
 <div class="carousel-item active" data-bs-interval="3000">
-<img src="assets/imgs/areco-nicolas-taylor_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/areco-nicolas-taylor_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 <div class="carousel-caption d-none d-md-block">
-<p>Gauchos and horses in San Antonio de Areco</p>
+Gauchos and horses in San Antonio de Areco
 </div>
 </div>
 <div class="carousel-item" data-bs-interval="3000">
-<img src="assets/imgs/humahuaca_transly-translation-agency_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/humahuaca_transly-translation-agency_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 <div class="carousel-caption d-none d-md-block">
-<p>Llamas on Humahuaqueña grassland</p>
+Llamas on Humahuaqueña grassland
 </div>
 </div>
 <div class="carousel-item" data-bs-interval="3000">
-<img src="assets/imgs//mendoza_nicolas-perez_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs//mendoza_nicolas-perez_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 <div class="carousel-caption d-none d-md-block">
-<p>Mendoza purple-petaled flowers</p>
+Mendoza purple-petaled flowers
 </div>
 </div>
 </div>
@@ -357,6 +385,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="without-indicator-buttons" class="level3">
 <h3 class="anchored" data-anchor-id="without-indicator-buttons">Without indicator buttons</h3>
+<details>
+<summary>
+View code
+</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>:::: {.carousel .dark .framed indicators="false"}</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>:::: {.carousel-item image="assets/imgs/ushuaia_luuk-wouters_cropped.jpg" caption="Les Eclaireurs Lighthouse in Tierra del Fuego"}</span>
@@ -369,24 +401,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="quarto-carousel-6" class="carousel carousel-dark slide carousel-framed" data-bs-ride="carousel">
 <div class="carousel-inner">
 <div class="carousel-item active" data-bs-interval="3000">
-<img src="assets/imgs/ushuaia_luuk-wouters_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/ushuaia_luuk-wouters_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 <div class="carousel-caption d-none d-md-block">
-<p>Les Eclaireurs Lighthouse in Tierra del Fuego</p>
+Les Eclaireurs Lighthouse in Tierra del Fuego
 </div>
 </div>
 <div class="carousel-item" data-bs-interval="3000">
-<img src="assets/imgs/iguazu_derek-oyen_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/iguazu_derek-oyen_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 <div class="carousel-caption d-none d-md-block">
-<p>Argentine side of Iguazú Falls</p>
+Argentine side of Iguazú Falls
 </div>
 </div>
 <div class="carousel-item" data-bs-interval="3000">
-<img src="assets/imgs/jujuy_hector-ramon-perez_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/jujuy_hector-ramon-perez_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 <div class="carousel-caption d-none d-md-block">
-<p>Serranias del Hornocal in Jujuy</p>
+Serranias del Hornocal in Jujuy
 </div>
 </div>
 </div>
@@ -404,6 +437,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="without-autoplay" class="level3">
 <h3 class="anchored" data-anchor-id="without-autoplay">Without autoplay</h3>
+<details>
+<summary>
+View code
+</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>:::: {.carousel .dark .framed indicators="false" autoplay="false"}</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>:::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" caption="Puente Rosario-Victoria"}</span>
@@ -416,22 +453,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="quarto-carousel-7" class="carousel carousel-dark slide carousel-framed" data-bs-ride="false">
 <div class="carousel-inner">
 <div class="carousel-item active" data-bs-interval="3000">
-<img src="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 <div class="carousel-caption d-none d-md-block">
-<p>Puente Rosario-Victoria</p>
+Puente Rosario-Victoria
 </div>
 </div>
 <div class="carousel-item" data-bs-interval="3000">
-<img src="assets/imgs/bariloche_emilio-lujan_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/bariloche_emilio-lujan_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 <div class="carousel-caption d-none d-md-block">
-<p>San Carlos de Bariloche, Rio Negro</p>
+San Carlos de Bariloche, Rio Negro
 </div>
 </div>
 <div class="carousel-item" data-bs-interval="3000">
-<img src="assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg" class="d-block mx-auto">
+<p><img src="assets/imgs/fitz-roy_ignacio-estevo_cropped.jpg" class="d-block mx-auto img-fluid"></p>
 </div>
 </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#quarto-carousel-7" data-bs-slide="prev">
@@ -448,6 +486,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="without-transition" class="level3">
 <h3 class="anchored" data-anchor-id="without-transition">Without transition</h3>
+<details>
+<summary>
+View code
+</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>:::: {.carousel .dark autoplay="false" transition="none"}</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>:::: {.carousel-item}</span>
@@ -463,6 +505,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="quarto-carousel-8" class="carousel carousel-dark slide" data-bs-ride="false">
 <div class="carousel-indicators">
   <button type="button" data-bs-target="#quarto-carousel-8" data-bs-slide-to="0" class=" active" aria-current="true" aria-label="Slide 1"></button>
@@ -512,6 +555,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="slides-with-style">Slides with style</h2>
 <section id="background-color" class="level3">
 <h3 class="anchored" data-anchor-id="background-color">Background color</h3>
+<details>
+<summary>
+View code
+</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>:::: {.carousel .dark .framed indicators="false" autoplay="false"}</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>:::: {.carousel-item style="background-color:rgba(0, 0, 0, 0.2);" caption="Has a caption"}</span>
@@ -527,11 +574,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="quarto-carousel-9" class="carousel carousel-dark slide carousel-framed" data-bs-ride="false">
 <div class="carousel-inner">
 <div class="carousel-item active" data-bs-interval="3000" style="background-color:rgba(0, 0, 0, 0.2);">
 <div class="carousel-caption d-none d-md-block">
-<p>Has a caption</p>
+Has a caption
 </div>
 <div class="overlay">
 <div class="fs-2 fw-bold">
@@ -548,7 +596,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="carousel-item" data-bs-interval="3000" style="background-color:rgba(0, 0, 0, 0.6);">
 <div class="carousel-caption d-none d-md-block">
-<p>bring it back!</p>
+bring it back!
 </div>
 <div class="overlay">
 <div class="fs-2 fw-bold">
@@ -571,6 +619,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="multiple-heights" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-heights">Multiple heights</h3>
+<details>
+<summary>
+View code
+</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>:::: {.carousel .dark .framed indicators="false" autoplay="false"}</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>:::: {.carousel-item style="background-color:rgba(159,188,174, 1);" caption="Default height"}</span>
@@ -586,11 +638,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div id="quarto-carousel-10" class="carousel carousel-dark slide carousel-framed" data-bs-ride="false">
 <div class="carousel-inner">
 <div class="carousel-item active" data-bs-interval="3000" style="background-color:rgba(159,188,174, 1);">
 <div class="carousel-caption d-none d-md-block">
-<p>Default height</p>
+Default height
 </div>
 <div class="overlay">
 <div class="fs-2 fw-bold">
@@ -600,7 +653,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="carousel-item" data-bs-interval="3000" style="background-color:rgba(175,199,188, 1); height: 400px;">
 <div class="carousel-caption d-none d-md-block">
-<p>400px</p>
+400px
 </div>
 <div class="overlay">
 <div class="fs-2 fw-bold">
@@ -610,7 +663,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="carousel-item" data-bs-interval="3000" style="background-color:rgba(191,210,201, 1); height: 600px;">
 <div class="carousel-caption d-none d-md-block">
-<p>that's too much!</p>
+that's too much!
 </div>
 <div class="overlay">
 <div class="fs-2 fw-bold">
