@@ -23,6 +23,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Check HTML and PDF output
+        run: python3 tests/check.py
+
       - name: Render Webpage
         shell: bash
         run: quarto render

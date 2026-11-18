@@ -59,3 +59,17 @@
 .carousel.carousel-framed .carousel-caption {
   padding-top: 1em;
 }
+
+/* Native figures retain captions, numbering and cross-reference targets. */
+.carousel-item-figure figure,
+.carousel-item-figure .quarto-figure {
+  margin: 0;
+}
+
+.carousel-item-figure figcaption {
+  text-align: center;
+}
+
+.carousel-framed .carousel-item-figure {
+  padding-bottom: 2rem;
+}

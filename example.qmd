@@ -1,6 +1,8 @@
 ---
 title: "Quarto Carousel Demo"
-format: html
+format:
+  html: default
+  typst: default
 filters:
   - carousel
 ---
@@ -13,6 +15,9 @@ Find the extension at [github.com/tomicapretto/quarto-carousel](https://github.c
 ## Default carousels
 
 ### Images
+
+<details>
+<summary>View code</summary>
 
 ```markdown
 :::: {.carousel}
@@ -28,6 +33,8 @@ Find the extension at [github.com/tomicapretto/quarto-carousel](https://github.c
 
 :::
 ```
+
+</details>
 
 :::: {.carousel}
 
@@ -44,6 +51,9 @@ Find the extension at [github.com/tomicapretto/quarto-carousel](https://github.c
 
 ### Text with dark theme
 
+<details>
+<summary>View code</summary>
+
 ```markdown
 :::: {.carousel .dark}
 
@@ -59,6 +69,8 @@ Multiple lines, too.
 
 :::
 ```
+
+</details>
 
 :::: {.carousel .dark}
 
@@ -78,6 +90,9 @@ Multiple lines, too.
 
 ### Default duration
 
+<details>
+<summary>View code</summary>
+
 ```markdown
 :::: {.carousel controls="false" indicators="false"}
 
@@ -92,6 +107,8 @@ Multiple lines, too.
 
 :::
 ```
+
+</details>
 
 :::: {.carousel controls="false" indicators="false"}
 
@@ -108,6 +125,9 @@ Multiple lines, too.
 
 ### Custom duration
 
+<details>
+<summary>View code</summary>
+
 ```markdown
 :::: {.carousel controls="false" indicators="false" duration=1500}
 
@@ -122,6 +142,8 @@ Multiple lines, too.
 
 :::
 ```
+
+</details>
 
 :::: {.carousel controls="false" indicators="false" duration=1500}
 
@@ -140,6 +162,9 @@ Multiple lines, too.
 
 ### With captions
 
+<details>
+<summary>View code</summary>
+
 ```markdown
 :::: {.carousel .dark .framed}
 
@@ -154,6 +179,8 @@ Multiple lines, too.
 
 :::
 ```
+
+</details>
 
 :::: {.carousel .dark .framed}
 
@@ -170,6 +197,9 @@ Multiple lines, too.
 
 ### Without indicator buttons
 
+<details>
+<summary>View code</summary>
+
 ```markdown
 :::: {.carousel .dark .framed indicators="false"}
 
@@ -184,6 +214,8 @@ Multiple lines, too.
 
 :::
 ```
+
+</details>
 
 :::: {.carousel .dark .framed indicators="false"}
 
@@ -200,6 +232,9 @@ Multiple lines, too.
 
 ### Without autoplay
 
+<details>
+<summary>View code</summary>
+
 ```markdown
 :::: {.carousel .dark .framed indicators="false" autoplay="false"}
 
@@ -215,6 +250,8 @@ Multiple lines, too.
 :::
 ```
 
+</details>
+
 :::: {.carousel .dark .framed indicators="false" autoplay="false"}
 
 :::: {.carousel-item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" caption="Puente Rosario-Victoria"}
@@ -229,6 +266,9 @@ Multiple lines, too.
 :::
 
 ### Without transition
+
+<details>
+<summary>View code</summary>
 
 ```markdown
 :::: {.carousel .dark autoplay="false" transition="none"}
@@ -247,6 +287,8 @@ If you need it
 
 :::
 ```
+
+</details>
 
 :::: {.carousel .dark autoplay="false" transition="none"}
 
@@ -268,6 +310,9 @@ If you need it
 
 ### Background color
 
+<details>
+<summary>View code</summary>
+
 ```markdown
 :::: {.carousel .dark .framed indicators="false" autoplay="false"}
 
@@ -285,6 +330,8 @@ But then we can
 
 :::
 ```
+
+</details>
 
 :::: {.carousel .dark .framed indicators="false" autoplay="false"}
 
@@ -305,6 +352,9 @@ But then we can
 
 ### Multiple heights
 
+<details>
+<summary>View code</summary>
+
 ```markdown
 :::: {.carousel .dark .framed indicators="false" autoplay="false"}
 
@@ -322,6 +372,8 @@ Oh, no!
 
 :::
 ```
+
+</details>
 
 :::: {.carousel .dark .framed indicators="false" autoplay="false"}
 
