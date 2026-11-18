@@ -1,6 +1,6 @@
 # Bootstrap Carousel for Quarto
 
-This extension exposes [Bootstrap’s Carousel component](https://getbootstrap.com/docs/5.3/components/carousel/) for use in Quarto HTML documents.
+This extension exposes [Bootstrap’s Carousel component](https://getbootstrap.com/docs/5.3/components/carousel/) for use in Quarto HTML documents with a Bootstrap theme. PDF output shows the images and their captions in order.
 
 ## Installation
 
@@ -60,12 +60,75 @@ Or image-based carousels like this:
 :::
 ```
 
+## Supported slide syntax
+
+The existing `.carousel-item` syntax also accepts `.item` as an alias:
+
+```markdown
+::::: {.carousel .dark .framed autoplay="false"}
+:::: {.item image="assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg" caption="Visit Rosario.<br>Cross the river."}
+::::
+:::: {.item image="assets/imgs/bariloche_emilio-lujan_cropped.jpg" caption="Continue to Bariloche."}
+::::
+:::::
+```
+
+You can also put Markdown images directly inside `.carousel`. Their captions
+become the slide captions. Images with figure identifiers are supported too:
+
+```markdown
+::: {.carousel .dark .framed}
+![Visit Rosario.](assets/imgs/puente-rosario_maximiliano-piu_cropped.jpg)
+
+![Visit Bariloche.](assets/imgs/bariloche_emilio-lujan_cropped.jpg){#fig-bariloche}
+:::
+
+See @fig-bariloche.
+```
+
+In static output, images use a native Pandoc image at `85%` width, followed by
+the caption and any slide body content. Captions containing `<br>` become native
+line breaks; inline HTML formatting such as `<strong>` is retained as native
+formatting. CSS styling, controls and timing options apply to interactive HTML
+output only. SVG images are also supported in Typst output.
+
 ## Example
 
-Here is the source code for a minimal example: [example.qmd](example.qmd).
+[example.qmd](example.qmd) demonstrates the carousel options. Code blocks are
+collapsed in HTML under “View code”. Render the HTML and PDF examples with:
 
-Rendered output of `example.qmd` in HTML format: [https://tomicapretto.com/quarto-carousel/](https://tomicapretto.com/quarto-carousel/).
+```sh
+quarto render
+```
 
+Or select a format:
+
+```sh
+quarto render example.qmd --to html
+quarto render example.qmd --to typst
+```
+
+Outputs are written to `_site/example.html` and `_site/example.pdf`.
+
+Published demo: [tomicapretto.com/quarto-carousel](https://tomicapretto.com/quarto-carousel/).
+
+## Updating an existing project
+
+```sh
+quarto update tomicapretto/quarto-carousel
+```
+
+See [CHANGELOG.md](CHANGELOG.md) for version details.
+
+## Validation
+
+```sh
+python3 tests/check.py
+```
+
+The integration check verifies HTML controls, figure references and copied
+resources, plus native PDF images, captions and line breaks. It checks PDF text
+when `pdftotext` is installed and uses a temporary SVG for image coverage.
 
 ## Photo Credits
 

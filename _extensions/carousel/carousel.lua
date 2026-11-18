@@ -1,6 +1,6 @@
 
 --- @file carousel.lua
---- @brief Quarto filter to create Bootstrap Carousels in HTML documents
+--- @brief Interactive HTML carousels and native static steps for other formats
 --- @description This filter allows you to create carousels using Bootstrap in a Quarto document.
 --- It supports carousels with images, text, and captions.
 --- The filter allows users to customize both the carousel and the individual slides.
@@ -41,50 +41,84 @@ local function create_slide(is_active, duration, style)
   return out
 end
 
---- Create Image element from source string.
----
---- @param source string The source of the image.
---- @return pandoc.Image img The image, with classes `{"d-block", "mx-auto"}`.
-local function create_image(source)
-  local img = pandoc.Image({}, source, "", pandoc.Attr("", {"d-block", "mx-auto"}))
-  return img
-end
-
 --- Create overlay Div
 ---
 --- @param content table A table with arbitrary contents to put in a div.
 --- @return pandoc.Div out A div with class `"overlay"`. Its contents are on top of the slide.
 local function create_overlay(content)
-  inner_div = pandoc.Div(content, pandoc.Attr("", {"fs-2", "fw-bold"}))
+  local inner_div = pandoc.Div(content, pandoc.Attr("", {"fs-2", "fw-bold"}))
   local out = pandoc.Div(inner_div, pandoc.Attr("", {"overlay"}))
   return out
 end
 
---- Create caption div
----
---- @param text string The text for the slide caption.
---- @return pandoc.Div out A div with classes `{"carousel-caption", "d-none", "d-md-block"}`.
-local function create_caption(text)
-  -- NOTE: How could we make captions more flexible?
-
-  -- Replace <br> with a newline character (\n)
-  -- If the user writes '\n' it does not work.
-  local clean_string = text:gsub("<br>", "\n")
-  local inlines = {}
-  local first = true
-  for line in clean_string:gmatch("[^\n]+") do
-    if not first then
-      table.insert(inlines, pandoc.RawInline("html", "<br>"))
+--- Extract slides once for both interactive and static output.
+local function extract_items(el)
+  local items = {}
+  for _, block in ipairs(el.content) do
+    if block.t == "Div" and
+      (block.classes:includes("carousel-item") or block.classes:includes("item")) then
+      local source = block.attributes["image"]
+      table.insert(items, {
+        image = source and source ~= "" and pandoc.Image({}, source) or nil,
+        caption = pandoc.read(block.attributes["caption"] or "", "html").blocks,
+        content = block.content,
+        duration = block.attributes["duration"],
+        style = block.attributes["style"],
+      })
+    elseif block.t == "Figure" or (block.t == "Div" and
+      block.attributes["__quarto_custom_type"] == "FloatRefTarget") then
+      -- Keep the figure node intact so Quarto can number it and resolve refs.
+      table.insert(items, {
+        figure = block,
+        caption = pandoc.Blocks({}),
+        content = pandoc.Blocks({}),
+      })
+    elseif block.t == "Para" or block.t == "Plain" then
+      for _, inline in ipairs(block.content) do
+        if inline.t == "Image" then
+          table.insert(items, {
+            image = inline,
+            caption = #inline.caption > 0 and pandoc.Blocks({pandoc.Para(inline.caption)})
+              or pandoc.Blocks({}),
+            content = pandoc.Blocks({}),
+          })
+        end
+      end
     end
-    table.insert(inlines, pandoc.Str(line))
-    first = false
   end
+  return items
+end
 
-  local out = pandoc.Div(
-    { pandoc.Para(inlines) },
-    pandoc.Attr("", {"carousel-caption", "d-none", "d-md-block"})
-  )
-  return out
+--- Use native Pandoc elements so every output writer can retain the steps.
+local function static_carousel(items, id)
+  local blocks = pandoc.Blocks({})
+  for _, item in ipairs(items) do
+    if item.figure then
+      local figure = quarto._quarto.ast.walk(item.figure, {
+        Image = function(image)
+          image.attributes["width"] = "85%"
+          image.attributes["height"] = nil
+          return image
+        end,
+      })
+      blocks:insert(figure)
+    elseif item.image then
+      local image = item.image:clone()
+      image.caption = {pandoc.Str(pandoc.utils.stringify(item.caption))}
+      image.attributes["width"] = "85%"
+      image.attributes["height"] = nil
+      blocks:insert(pandoc.Para({image}))
+    end
+    if not item.figure then
+      -- Plain captions otherwise run into the following image in Typst.
+      local caption = pandoc.Div(item.caption):walk({
+        Plain = function(block) return pandoc.Para(block.content) end
+      })
+      blocks:extend(caption.content)
+    end
+    blocks:extend(item.content)
+  end
+  return pandoc.Div(blocks, pandoc.Attr(id))
 end
 
 --- Create navigation button
@@ -147,22 +181,28 @@ end
 --- Process `pandoc.Div` with the carousel filter
 ---
 ---@param el pandoc.Div The div to process.
----@return pandoc.RawBlock|nil out `The raw HTML block if the filter is effectively applied, else `nil`.
+---@return pandoc.Div|nil
 local function process_div(el)
-  -- Only work with HTML output formats
-  if not quarto.doc.is_format("html")
-    or not quarto.doc.has_bootstrap()
-    or not el.classes:includes("carousel") then
+  if not el.classes:includes("carousel") then
     return nil
   end
 
+  local items = extract_items(el)
+  local id = el.identifier ~= "" and el.identifier or unique_carousel_id()
+  if not quarto.doc.is_format("html") then
+    return static_carousel(items, id)
+  end
+
+  if not quarto.doc.has_bootstrap() then
+    return nil
+  end
   quarto.doc.add_html_dependency({
     name = "carousel",
-    version = "0.1.0",
+    version = "1.1.0",
     stylesheets = {"quarto-carousel.css"},
+    scripts = {"quarto-carousel.js"},
   })
 
-  local id = (el.identifier ~= nil and el.identifier ~= "") and el.identifier or unique_carousel_id()
   local show_indicators = (el.attributes["indicators"]) or "true"
   local show_controls = (el.attributes["controls"]) or "true"
   local duration = tonumber(el.attributes["duration"]) or 3000
@@ -175,40 +215,31 @@ local function process_div(el)
   -- Initialize empty tables for slides and indicators. There's one indicator per slide.
   local slides = {}
   local indicators = {}
-  for i, block in ipairs(el.content or {}) do
-    if block.classes:includes("carousel-item") then
-      local image_source = block.attributes["image"] or ""
-      local caption = block.attributes["caption"] or ""
-      local slide_duration = block.attributes["duration"] or duration
-      local slide_style = block.attributes["style"] or nil
+  for i, item in ipairs(items) do
+    local slide = create_slide(i == 1, item.duration or duration, item.style)
+    local indicator = create_indicator(id, i, i == 1)
 
-      local slide = create_slide(i == 1, slide_duration, slide_style)
-      local indicator = create_indicator(id, i, i == 1)
-
-      -- Add image, if available
-      if image_source and image_source ~= "" then
-        slide.content:insert(create_image(image_source))
-      end
-
-      -- Add caption, if available
-      if caption and caption ~= "" then
-        slide.content:insert(create_caption(caption))
-      end
-
-      -- Add additional content, if it exists (there's no intervention here)
-      if #block.content > 0 then
-        slide.content:insert(create_overlay(block.content))
-      end
-
-      -- Remove transition, if necessary
-      if transition == "none" then
-        slide.classes:insert("no-transition")
-      end
-
-      -- Add the created elements (slide and indicator) to their respective tables
-      table.insert(slides, slide)
-      table.insert(indicators, indicator)
+    if item.figure then
+      slide.classes:insert("carousel-item-figure")
+      slide.content:insert(item.figure)
+    elseif item.image then
+      local image = item.image:clone()
+      image.classes:insert("d-block")
+      image.classes:insert("mx-auto")
+      slide.content:insert(pandoc.Para({image}))
     end
+    if not item.figure and #item.caption > 0 then
+      slide.content:insert(pandoc.Div(item.caption,
+        pandoc.Attr("", {"carousel-caption", "d-none", "d-md-block"})))
+    end
+    if #item.content > 0 then
+      slide.content:insert(create_overlay(item.content))
+    end
+    if transition == "none" then
+      slide.classes:insert("no-transition")
+    end
+    table.insert(slides, slide)
+    table.insert(indicators, indicator)
   end
 
   -- Create empty div for the carousel, classes and attributes set.
@@ -248,8 +279,8 @@ local function process_div(el)
     div_carousel.content:insert(control_next)
   end
 
-  local out = pandoc.RawBlock("html", pandoc.write(pandoc.Pandoc(div_carousel), "html"))
-  return out
+  -- Native blocks keep figures visible to Quarto's cross-reference pipeline.
+  return div_carousel
 end
 
 
